@@ -1,0 +1,7 @@
+Phân tích yêu cầu đáp ứng cho ai, ai sử dụng
+Stakeholder là tất cả người có liên quan tới đến dự án (khách hàng, quản lý, thành viên nhóm,..) => rất quan trọng
+Phân hệ các người dùng: người dùng đó được làm gì trên hệ thống (admin, quản lý, nhóm ng dùng khách hàng,..)
+
+phân tích: sơ đồ activity , sơ đồ lớp
+thiết kế: prototype, xác định kiểu dữ liệu, phương thức, thiết kế thuật toán (gọi tới phương thức gì, gọi truy vấn gì, trả kết quả ra sao) sơ đồ sequence 
+cài đặt
