@@ -1,0 +1,16 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "6f49de36-67dc-4e61-ab6f-2ee0df3ae5f2": {
+      "ProjectGuid": "6f49de36-67dc-4e61-ab6f-2ee0df3ae5f2",
+      "DisplayName": "TrainingSystem",
+      "ColorIndex": 0
+    },
+    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
+      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
+      "DisplayName": "Miscellaneous Files",
+      "ColorIndex": -1
+    }
+  },
+  "NextColorIndex": 1
+}

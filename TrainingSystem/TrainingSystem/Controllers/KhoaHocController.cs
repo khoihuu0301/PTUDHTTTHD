@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
@@ -82,10 +84,11 @@ namespace TrainingSystem.Controllers
         }
 
         // GET: KhoaHoc/Delete/5
-        public ActionResult Delete(int id)
-        {
+        /*public ActionResult Delete(int id)
+        {   
+
             return View();
-        }
+        }*/
 
         // POST: KhoaHoc/Delete/5
         [HttpPost]
@@ -93,13 +96,32 @@ namespace TrainingSystem.Controllers
         {
             try
             {
-                // TODO: Add delete logic here
+                string conString2 = "data source=.; database=TrainingSystem;integrated security = true";
 
-                return RedirectToAction("Index");
+                using (SqlConnection connection = new SqlConnection(conString2))
+                {
+                    connection.Open();
+                    SqlDataReader rdr = null;
+                    SqlCommand command = connection.CreateCommand();
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.CommandText = "sp_DeactiveKhoaHoc";
+                    command.Parameters.Add(new SqlParameter("@ID", id));
+                    command.CommandType = CommandType.StoredProcedure;
+                    rdr = command.ExecuteReader();
+
+                    connection.Close();
+
+                }
+                var khoahoclist = _khoahocDAL.GetAllKhoaHoc();
+                Response.Write("<script>alert('success')</script>");
+                return View(khoahoclist);
+
             }
             catch
             {
-                return View();
+                var khoahoclist = _khoahocDAL.GetAllKhoaHoc();
+                Response.Write("<script>alert('failed')</script>");
+                return View(khoahoclist);
             }
         }
 

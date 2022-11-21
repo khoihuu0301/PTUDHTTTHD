@@ -12,11 +12,11 @@ namespace TrainingSystem.DAL
     public class KhoaHoc_DAL
     {
         string conString = ConfigurationManager.ConnectionStrings["myConnection"].ToString();
-
+        string conString2= "data source=.; database=TrainingSystem;integrated security = true"; 
         public List<KhoaHoc> GetAllKhoaHoc()
         {
             List<KhoaHoc> khoahoclist = new List<KhoaHoc>();
-            using (SqlConnection connection = new SqlConnection(conString))
+            using (SqlConnection connection = new SqlConnection(conString2))
             {
                 SqlCommand command = connection.CreateCommand();
                 command.CommandType = CommandType.StoredProcedure;
@@ -69,6 +69,28 @@ namespace TrainingSystem.DAL
                         });
                     }
                 }
+            }
+            return khoahoclist;
+        }
+
+        public List<KhoaHoc> DeleteKhoaHoc(int id)
+        {
+            List<KhoaHoc> khoahoclist = new List<KhoaHoc>();
+            string conString2 = "data source=.; database=TrainingSystem;integrated security = true";
+
+            using (SqlConnection connection = new SqlConnection(conString2))
+            {
+                connection.Open();
+                SqlDataReader rdr = null;
+                SqlCommand command = connection.CreateCommand();
+                command.CommandType = CommandType.StoredProcedure;
+                command.CommandText = "sp_DeactiveKhoaHoc";
+                command.Parameters.Add(new SqlParameter("@ID", id));
+                command.CommandType = CommandType.StoredProcedure;
+                rdr = command.ExecuteReader();             
+                
+                connection.Close();
+                
             }
             return khoahoclist;
         }
