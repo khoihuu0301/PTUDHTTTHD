@@ -11,8 +11,10 @@ namespace TrainingSystem.Models
         [Key]
         
         public int MaKhoaHoc { get; set; }
+        [Display(Name = "Tên khóa học")]
         [Required]
         public string TenKhoaHoc { get; set; }
+        [Display(Name = "Người hướng dẫn")]
         public string NguoiHuongDan { get; set; }
     }
 }

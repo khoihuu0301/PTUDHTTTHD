@@ -239,3 +239,7 @@ D:\Work\2023_1st\PTUDHTTTHD\Project\PTUDHTTTHD\TrainingSystem\TrainingSystem\bin
 D:\Work\2023_1st\PTUDHTTTHD\Project\PTUDHTTTHD\TrainingSystem\TrainingSystem\bin\EntityFramework.SqlServer.dll
 D:\Work\2023_1st\PTUDHTTTHD\Project\PTUDHTTTHD\TrainingSystem\TrainingSystem\bin\EntityFramework.xml
 D:\Work\2023_1st\PTUDHTTTHD\Project\PTUDHTTTHD\TrainingSystem\TrainingSystem\bin\EntityFramework.SqlServer.xml
+C:\Users\Ngan Le\Documents\GitHub\PTUDHTTTHD\TrainingSystem\TrainingSystem\bin\EntityFramework.dll
+C:\Users\Ngan Le\Documents\GitHub\PTUDHTTTHD\TrainingSystem\TrainingSystem\bin\EntityFramework.SqlServer.dll
+C:\Users\Ngan Le\Documents\GitHub\PTUDHTTTHD\TrainingSystem\TrainingSystem\bin\EntityFramework.xml
+C:\Users\Ngan Le\Documents\GitHub\PTUDHTTTHD\TrainingSystem\TrainingSystem\bin\EntityFramework.SqlServer.xml
