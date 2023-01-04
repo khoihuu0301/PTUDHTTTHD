@@ -12,36 +12,36 @@ namespace TrainingSystem.DAL
     public class MonHoc_DAL
     {
         string conString = ConfigurationManager.ConnectionStrings["myConnection"].ToString();
-        string conString2= "data source=.; database=TrainingSystem;integrated security = true"; 
-        //public List<MonHoc> GetAllMonHoc()
-        //{
-        //    List<MonHoc> monhoclist = new List<MonHoc>();
-        //    using (SqlConnection connection = new SqlConnection(conString))
-        //    {
-        //        SqlCommand command = connection.CreateCommand();
-        //        command.CommandType = CommandType.StoredProcedure;
-        //        command.CommandText = "sp_GetAllKhoaHoc";
-        //        SqlDataAdapter sqlDA = new SqlDataAdapter(command);
-        //        DataTable dtMonHoc = new DataTable();
+        string conString2 = "data source=.; database=TrainingSystem;integrated security = true";
+        public List<MonHoc> GetAllMonHoc()
+        {
+            List<MonHoc> monhoclist = new List<MonHoc>();
+            using (SqlConnection connection = new SqlConnection(conString))
+            {
+                SqlCommand command = connection.CreateCommand();
+                command.CommandType = CommandType.StoredProcedure;
+                command.CommandText = "sp_GetAllKhoaHoc";
+                SqlDataAdapter sqlDA = new SqlDataAdapter(command);
+                DataTable dtMonHoc = new DataTable();
 
-        //        connection.Open();
-        //        sqlDA.Fill(dtMonHoc);
-        //        connection.Close();
+                connection.Open();
+                sqlDA.Fill(dtMonHoc);
+                connection.Close();
 
-        //        foreach (DataRow dr in dtMonHoc.Rows)
-        //        {
-        //            monhoclist.Add(new MonHoc
-        //            {
-        //                MaMH = Convert.ToInt32(dr["MaMH"]),
-        //                TenMH = dr["TenMH"].ToString(),
-        //                MoTa = dr["MoTa"].ToString(),
-        //                MucTieu = dr["MucTieu"].ToString()
-        //            });
-        //        }
-        //    } 
+                foreach (DataRow dr in dtMonHoc.Rows)
+                {
+                    monhoclist.Add(new MonHoc
+                    {
+                        MaMH = Convert.ToInt32(dr["MaMH"]),
+                        TenMH = dr["TenMH"].ToString(),
+                        //MoTa = dr["MoTa"].ToString(),
+                        //MucTieu = dr["MucTieu"].ToString()
+                    });
+                }
+            }
 
-        //        return monhoclist;
-        //}
+            return monhoclist;
+        }
 
         public List<MonHoc> SearchMonHoc(string SearchString)
         {
@@ -89,28 +89,8 @@ namespace TrainingSystem.DAL
                 return monhoclist;
             }
         }
+    }
 
-        //public List<KhoaHoc> DeleteKhoaHoc(int id)
-        //{
-        //    List<KhoaHoc> khoahoclist = new List<KhoaHoc>();
-        //    string conString2 = "data source=.; database=TrainingSystem;integrated security = true";
-
-        //    using (SqlConnection connection = new SqlConnection(conString2))
-        //    {
-        //        connection.Open();
-        //        SqlDataReader rdr = null;
-        //        SqlCommand command = connection.CreateCommand();
-        //        command.CommandType = CommandType.StoredProcedure;
-        //        command.CommandText = "sp_DeactiveKhoaHoc";
-        //        command.Parameters.Add(new SqlParameter("@ID", id));
-        //        command.CommandType = CommandType.StoredProcedure;
-        //        rdr = command.ExecuteReader();             
-                
-        //        connection.Close();
-                
-        //    }
-        //    return khoahoclist;
-        //}
     }
     public class KhoaHoc_DAL
     {
@@ -171,6 +151,26 @@ namespace TrainingSystem.DAL
                 return khoahoclist;
             }
         }
+        public void DeleteKhoaHoc(int id)
+        {
+            //List<KhoaHoc> khoahoclist = new List<KhoaHoc>();
+            //string conString2 = "data source=.; database=TrainingSystem;integrated security = true";
+            string conString = ConfigurationManager.ConnectionStrings["myConnection"].ToString();
+            using (SqlConnection connection = new SqlConnection(conString))
+            {
+                connection.Open();
+                SqlDataReader rdr = null;
+                SqlCommand command = connection.CreateCommand();
+                command.CommandType = CommandType.StoredProcedure;
+                command.CommandText = "sp_DeactiveKhoaHoc";
+                command.Parameters.Add(new SqlParameter("@id", id));
+                command.CommandType = CommandType.StoredProcedure;
+                rdr = command.ExecuteReader();
+
+                connection.Close();
+
+            }
+            //return khoahoclist;
+        }
 
     }
-}

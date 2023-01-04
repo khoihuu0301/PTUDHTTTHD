@@ -27,5 +27,6 @@ namespace TrainingSystem.Models
 
         [Display(Name = "Ngày kết thúc")]
         public string NgayKetThuc { get; set; }
+
     }
 }

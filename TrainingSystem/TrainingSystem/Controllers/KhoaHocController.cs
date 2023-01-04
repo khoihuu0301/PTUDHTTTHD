@@ -1,37 +1,33 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Data.SqlClient;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI;
 using TrainingSystem.DAL;
 using TrainingSystem.Models;
 
 namespace TrainingSystem.Controllers
 {
-    public class MonHocController : Controller
+    public class KhoaHocController : Controller
     {
-        MonHoc_DAL _monhocDAL = new MonHoc_DAL();
+
         KhoaHoc_DAL _khoahocDAL = new KhoaHoc_DAL();
-        // GET: KhoaHoc
-        public ActionResult XemMonHoc(string SearchString)
+        public ActionResult XemKhoaHoc(string id, string SearchString)
         {
-            
-                var monhoclist = _monhocDAL.SearchMonHoc(SearchString);
-                return View(monhoclist);
+            var khoahoclist = _khoahocDAL.SearchKhoaHoc(id, SearchString);
+            return View(khoahoclist);
         }
+        // GET: KhoaHoc
         public ActionResult Index()
         {
             return View();
         }
 
         // GET: KhoaHoc/Details/5
-        public ActionResult Details(string id, string SearchString)
+        public ActionResult Details(int id)
         {
-            var khoahoclist = _khoahocDAL.SearchKhoaHoc(id,SearchString);
-            return View(khoahoclist);
+            return View();
         }
 
         // GET: KhoaHoc/Create
@@ -79,51 +75,27 @@ namespace TrainingSystem.Controllers
         }
 
         // GET: KhoaHoc/Delete/5
-        /*public ActionResult Delete(int id)
-        {   
-
-            return View();
-        }*/
+        public ActionResult Delete(int id)
+        {
+            _khoahocDAL.DeleteKhoaHoc(id);
+            //Page.ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + myStringVariable + "');", true);
+            return RedirectToAction("Index","MonHoc");
+        }
 
         // POST: KhoaHoc/Delete/5
-        //[HttpPost]
-        //public ActionResult Delete(int id, FormCollection collection)
-        //{
-        //    try
-        //    {
-        //        string conString2 = "data source=.; database=TrainingSystem;integrated security = true";
+        [HttpPost]
+        public ActionResult Delete(int id, FormCollection collection)
+        {
+            try
+            {
+                // TODO: Add delete logic here
 
-        //        using (SqlConnection connection = new SqlConnection(conString2))
-        //        {
-        //            connection.Open();
-        //            SqlDataReader rdr = null;
-        //            SqlCommand command = connection.CreateCommand();
-        //            command.CommandType = CommandType.StoredProcedure;
-        //            command.CommandText = "sp_DeactiveKhoaHoc";
-        //            command.Parameters.Add(new SqlParameter("@ID", id));
-        //            command.CommandType = CommandType.StoredProcedure;
-        //            rdr = command.ExecuteReader();
-
-        //            connection.Close();
-
-        //        }
-        //        var khoahoclist = _khoahocDAL.GetAllKhoaHoc();
-        //        Response.Write("<script>alert('success')</script>");
-        //        return View(khoahoclist);
-
-        //    }
-        //    catch
-        //    {
-        //        var khoahoclist = _khoahocDAL.GetAllKhoaHoc();
-        //        Response.Write("<script>alert('failed')</script>");
-        //        return View(khoahoclist);
-        //    }
-        //}
-
-        //public ActionResult SearchKhoaHoc(string SearchString)
-        //{
-        //    var khoahocsearch = _khoahocDAL.SearchKhoaHoc(SearchString);
-        //    return View(khoahocsearch);
-        //}
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
+        }
     }
 }

@@ -53,6 +53,7 @@
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -131,6 +132,8 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\KhoaHocController.cs" />
+    <Compile Include="Controllers\messagebox.cs" />
+    <Compile Include="Controllers\MonHocController.cs" />
     <Compile Include="DAL\KhoaHoc_DAL.cs" />
     <Compile Include="Framework\KhoaHoc.cs" />
     <Compile Include="Framework\Model1.cs" />
@@ -182,7 +185,6 @@
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\KhoaHoc\Create.cshtml" />
     <Content Include="Views\MonHoc\XemMonHoc.cshtml" />
-    <Content Include="Views\MonHoc\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
