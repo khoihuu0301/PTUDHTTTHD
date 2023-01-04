@@ -139,6 +139,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\KhoaHoc.cs" />
+    <Compile Include="Models\MonHoc.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -180,6 +181,8 @@
     <Content Include="Views\KhoaHoc\XemKhoaHoc.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\KhoaHoc\Create.cshtml" />
+    <Content Include="Views\MonHoc\XemMonHoc.cshtml" />
+    <Content Include="Views\MonHoc\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

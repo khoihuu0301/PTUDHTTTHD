@@ -7,26 +7,20 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using TrainingSystem.DAL;
+using TrainingSystem.Models;
 
 namespace TrainingSystem.Controllers
 {
-    public class KhoaHocController : Controller
+    public class MonHocController : Controller
     {
+        MonHoc_DAL _monhocDAL = new MonHoc_DAL();
         KhoaHoc_DAL _khoahocDAL = new KhoaHoc_DAL();
         // GET: KhoaHoc
-        public ActionResult XemKhoaHoc(string SearchString)
+        public ActionResult XemMonHoc(string SearchString)
         {
             
-            if (string.IsNullOrEmpty(SearchString))
-            {
-                var khoahoclist = _khoahocDAL.GetAllKhoaHoc();
-                return View(khoahoclist);
-            }
-            else
-            {
-                var khoahocsearch = _khoahocDAL.SearchKhoaHoc(SearchString); 
-                return View(khoahocsearch);
-            }
+                var monhoclist = _monhocDAL.SearchMonHoc(SearchString);
+                return View(monhoclist);
         }
         public ActionResult Index()
         {
@@ -34,9 +28,10 @@ namespace TrainingSystem.Controllers
         }
 
         // GET: KhoaHoc/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(string id, string SearchString)
         {
-            return View();
+            var khoahoclist = _khoahocDAL.SearchKhoaHoc(id,SearchString);
+            return View(khoahoclist);
         }
 
         // GET: KhoaHoc/Create
@@ -91,44 +86,44 @@ namespace TrainingSystem.Controllers
         }*/
 
         // POST: KhoaHoc/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                string conString2 = "data source=.; database=TrainingSystem;integrated security = true";
+        //[HttpPost]
+        //public ActionResult Delete(int id, FormCollection collection)
+        //{
+        //    try
+        //    {
+        //        string conString2 = "data source=.; database=TrainingSystem;integrated security = true";
 
-                using (SqlConnection connection = new SqlConnection(conString2))
-                {
-                    connection.Open();
-                    SqlDataReader rdr = null;
-                    SqlCommand command = connection.CreateCommand();
-                    command.CommandType = CommandType.StoredProcedure;
-                    command.CommandText = "sp_DeactiveKhoaHoc";
-                    command.Parameters.Add(new SqlParameter("@ID", id));
-                    command.CommandType = CommandType.StoredProcedure;
-                    rdr = command.ExecuteReader();
+        //        using (SqlConnection connection = new SqlConnection(conString2))
+        //        {
+        //            connection.Open();
+        //            SqlDataReader rdr = null;
+        //            SqlCommand command = connection.CreateCommand();
+        //            command.CommandType = CommandType.StoredProcedure;
+        //            command.CommandText = "sp_DeactiveKhoaHoc";
+        //            command.Parameters.Add(new SqlParameter("@ID", id));
+        //            command.CommandType = CommandType.StoredProcedure;
+        //            rdr = command.ExecuteReader();
 
-                    connection.Close();
+        //            connection.Close();
 
-                }
-                var khoahoclist = _khoahocDAL.GetAllKhoaHoc();
-                Response.Write("<script>alert('success')</script>");
-                return View(khoahoclist);
+        //        }
+        //        var khoahoclist = _khoahocDAL.GetAllKhoaHoc();
+        //        Response.Write("<script>alert('success')</script>");
+        //        return View(khoahoclist);
 
-            }
-            catch
-            {
-                var khoahoclist = _khoahocDAL.GetAllKhoaHoc();
-                Response.Write("<script>alert('failed')</script>");
-                return View(khoahoclist);
-            }
-        }
+        //    }
+        //    catch
+        //    {
+        //        var khoahoclist = _khoahocDAL.GetAllKhoaHoc();
+        //        Response.Write("<script>alert('failed')</script>");
+        //        return View(khoahoclist);
+        //    }
+        //}
 
-        public ActionResult SearchKhoaHoc(string SearchString)
-        {
-            var khoahocsearch = _khoahocDAL.SearchKhoaHoc(SearchString);
-            return View(khoahocsearch);
-        }
+        //public ActionResult SearchKhoaHoc(string SearchString)
+        //{
+        //    var khoahocsearch = _khoahocDAL.SearchKhoaHoc(SearchString);
+        //    return View(khoahocsearch);
+        //}
     }
 }
