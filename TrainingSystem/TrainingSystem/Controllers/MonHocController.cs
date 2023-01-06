@@ -23,21 +23,12 @@ namespace TrainingSystem.Controllers
         }
         public ActionResult Index()
         {
-            var monhoclist = _monhocDAL.GetAllMonHoc();
-            return RedirectToAction("XemMonHoc",new { SearchString = ' ' });
+            return View();
         }
 
         // GET: KhoaHoc/Details/5
         public ActionResult Details(string id, string SearchString)
         {
-            //var khoahoclist = new KhoaHocController().XemKhoaHoc(id,SearchString);
-            //return View(khoahoclist);
-            //var controller = DependencyResolver.Current.GetService<KhoaHocController>();
-            //controller.ControllerContext = new ControllerContext(this.Request.RequestContext, controller);
-
-            ////Call your method
-            //ActionInvoker.InvokeAction(controller.ControllerContext, "XemKhoaHoc");
-            //return controller.XemKhoaHoc(id, SearchString);
             return RedirectToAction("XemKhoaHoc", "KhoaHoc" ,new {id = id, SearchString = SearchString});
         }
 
@@ -54,8 +45,26 @@ namespace TrainingSystem.Controllers
             try
             {
                 // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
+                List<string> parameters = new List<string>();
+                if (ModelState.IsValid)
+                {
+                    foreach (string key in collection.AllKeys)
+                    {
+                        if(string.IsNullOrEmpty(collection[key]))
+                        {
+                            return RedirectToAction("XemMonHoc", new { SearchString = ' ' }); ;
+                        }    
+                        else parameters.Add(collection[key]);
+                    }
+                    _monhocDAL.CreateMonHoc(parameters[1], parameters[2], parameters[3]);
+                    ViewBag.Message = "Thêm môn học mới THÀNH CÔNG!";
+                    return RedirectToAction("XemMonHoc", new { SearchString = ' ' });
+                }
+                else
+                {
+                    ViewBag.Message = "Thêm môn học mới THẤT BẠI!";
+                    return RedirectToAction("XemMonHoc", new { SearchString = ' ' });
+                }
             }
             catch
             {
@@ -86,11 +95,11 @@ namespace TrainingSystem.Controllers
         }
 
         // GET: KhoaHoc/Delete/5
-        /*public ActionResult Delete(int id)
-        {   
-
-            return View();
-        }*/
+        public ActionResult Delete(int id)
+        {
+            _monhocDAL.DeleteMonHoc(id);
+            return RedirectToAction("XemMonHoc", "MonHoc", new { SearchString = ' ' }); ;
+        }
 
         // POST: KhoaHoc/Delete/5
         //[HttpPost]

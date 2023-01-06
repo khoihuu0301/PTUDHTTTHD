@@ -1,5 +1,5 @@
 --drop table MonHoc
-create table MonHoc
+create table MonHoc --xem, t?o, detail, xóa
 (
 	MaMH int identity(1,1),
 	TenMH nvarchar(100),
@@ -13,7 +13,7 @@ create table MonHoc
 ) ON [PRIMARY]
 
 --drop table KhoaHoc
-create table KhoaHoc
+create table KhoaHoc --xem, xóa,
 (
 	MaKH int identity(1,1),
 	MaMH int,
@@ -48,6 +48,7 @@ create table HocVien
 	SDT_HV char(10),
 	DiaChi_HV nvarchar(100),
 	Email_HV nvarchar(100),
+	ChucVu nvarchar(100),
 	active bit
 )
 --drop table LopHoc
@@ -79,11 +80,18 @@ create or alter procedure [dbo].[sp_GetAllKhoaHoc]
 as
 begin
 	select MaKH, kh.MaMH, mh.TenMH, nhd.TenNHD, CachDanhGia, NgayBatDau, NgayKetThuc from KhoaHoc kh WITH(nolock) join MonHoc mh on kh.MaMH = mh.MaMH join NguoiHuongDan nhd on nhd.MaNHD = kh.MaNHD
-	where active = 1
+	where kh.active = 1
 end
 
 create or alter procedure [dbo].[sp_CreateMonHoc] @tenmh nvarchar(100), @mota nvarchar(100), @muctieu nvarchar(100)
 as
 begin
 	insert into MonHoc(TenMH, MoTa, MucTieu,active) values (@tenmh,@mota,@muctieu,1)
+end
+
+create or alter procedure [dbo].[sp_GetAllLopHoc]
+as
+begin
+	select MaKH, lh.MaHV, TenHV, Diem, TrangThai from LopHoc lh WITH(nolock) join HocVien hv on lh.MaHV = hv.MaHV
+	where lh.active = 1
 end

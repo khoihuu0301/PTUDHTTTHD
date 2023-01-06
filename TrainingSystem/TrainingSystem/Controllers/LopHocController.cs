@@ -3,40 +3,37 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using System.Web.UI;
 using TrainingSystem.DAL;
-using TrainingSystem.Models;
 
 namespace TrainingSystem.Controllers
 {
-    public class KhoaHocController : Controller
+    public class LopHocController : Controller
     {
-
-        KhoaHoc_DAL _khoahocDAL = new KhoaHoc_DAL();
-        public ActionResult XemKhoaHoc(string id, string SearchString)
+        // GET: LopHoc
+        LopHoc_DAL _lophocDAL = new LopHoc_DAL();
+        public ActionResult XemLopHoc (string id, string SearchString)
         {
-            var khoahoclist = _khoahocDAL.SearchKhoaHoc(id, SearchString);
-            return View(khoahoclist);
+            var lophoclist = _lophocDAL.SearchLopHoc(id, SearchString);
+            return View(lophoclist);
         }
-        // GET: KhoaHoc
         public ActionResult Index()
         {
             return View();
         }
 
-        // GET: KhoaHoc/Details/5
-        public ActionResult Details(int id,string SearchString)
+        // GET: LopHoc/Details/5
+        public ActionResult Details(int id)
         {
-            return RedirectToAction("XemLopHoc","LopHoc",new { id = id, SearchString = SearchString });
+            return View();
         }
 
-        // GET: KhoaHoc/Create
+        // GET: LopHoc/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: KhoaHoc/Create
+        // POST: LopHoc/Create
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
@@ -52,13 +49,13 @@ namespace TrainingSystem.Controllers
             }
         }
 
-        // GET: KhoaHoc/Edit/5
+        // GET: LopHoc/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: KhoaHoc/Edit/5
+        // POST: LopHoc/Edit/5
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
@@ -74,15 +71,13 @@ namespace TrainingSystem.Controllers
             }
         }
 
-        // GET: KhoaHoc/Delete/5
+        // GET: LopHoc/Delete/5
         public ActionResult Delete(int id)
         {
-            _khoahocDAL.DeleteKhoaHoc(id);
-            //Page.ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + myStringVariable + "');", true);
-            return RedirectToAction("XemMonHoc","MonHoc", new { SearchString = ' '});
+            return View();
         }
 
-        // POST: KhoaHoc/Delete/5
+        // POST: LopHoc/Delete/5
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {
