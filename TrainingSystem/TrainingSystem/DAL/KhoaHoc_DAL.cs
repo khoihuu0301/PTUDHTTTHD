@@ -90,5 +90,29 @@ namespace TrainingSystem.DAL
             //return khoahoclist;
         }
 
+
+        public void CreateKhoaHoc(string mamh, string manhd, string cachdanhgia, string ngaybatdau, string ngayketthuc)
+        {
+            using (SqlConnection connection = new SqlConnection(conString))
+            {
+                connection.Open();
+                string CommandText = "insert into KhoaHoc(MaMH,MaNHD,CachDanhGia,NgayBatDau,NgayKetThuc,active) value(@mamh,@manhd,@cachdanhgia,@ngaybatdau,@ngayketthuc,1)";
+                var command = new SqlCommand(CommandText, connection);
+                command.Parameters.Add("@mamh", SqlDbType.Int);
+                command.Parameters["@mamh"].Value = Convert.ToInt32(mamh);
+                command.Parameters.Add("@manhd", SqlDbType.NVarChar);
+                command.Parameters["@manhd"].Value = manhd;
+                command.Parameters.Add("@cachdanhgia", SqlDbType.NVarChar);
+                command.Parameters["@cachdanhgia"].Value = cachdanhgia;
+                command.Parameters.Add("@ngaybatdau", SqlDbType.DateTime);
+                command.Parameters["@ngaybatdau"].Value = ngaybatdau;
+                command.Parameters.Add("@ngayketthuc", SqlDbType.DateTime);
+                command.Parameters["@ngayketthuc"].Value = ngayketthuc;
+                command.ExecuteNonQuery();
+                connection.Close();
+            }
+        }
     }
+
+   
 }

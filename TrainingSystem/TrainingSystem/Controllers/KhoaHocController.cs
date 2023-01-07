@@ -43,12 +43,30 @@ namespace TrainingSystem.Controllers
             try
             {
                 // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
+                List<string> parameters = new List<string>();
+                if (ModelState.IsValid)
+                {
+                    foreach (string key in collection.AllKeys)
+                    {
+                        if (string.IsNullOrEmpty(collection[key]))
+                        {
+                            return RedirectToAction("XemMonHoc", new { SearchString = ' ' }); ;
+                        }
+                        else parameters.Add(collection[key]);
+                    }
+                    _khoahocDAL.CreateKhoaHoc(parameters[1], parameters[2], parameters[3],parameters[4],parameters[5]);
+                    ViewBag.Message = "Thêm khóa học mới THÀNH CÔNG!";
+                    return RedirectToAction("XemMonHoc", new { SearchString = ' ' });
+                }
+                else
+                {
+                    ViewBag.Message = "Thêm khóa học mới THẤT BẠI!";
+                    return RedirectToAction("XemMonHoc", new { SearchString = ' ' });
+                }
             }
-            catch
+            catch (Exception ex)
             {
-                return View();
+                return View(ex);
             }
         }
 

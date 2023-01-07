@@ -12,6 +12,10 @@ namespace TrainingSystem.Models
         [Display(Name = "Mã khóa học")]
         [Required]
         public int MaKH { get; set; }
+        [Display(Name ="Mã người hướng dẫn")]
+        public string MaNHD { get; set; }
+        [Display(Name ="Mã môn học")]
+        public int MaMH { get; set; }
 
         [Display(Name = "Tên môn học")]
         public string TenMH { get; set; }

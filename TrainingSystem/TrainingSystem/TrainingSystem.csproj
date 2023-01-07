@@ -136,9 +136,11 @@
     <Compile Include="Controllers\LopHocController.cs" />
     <Compile Include="Controllers\messagebox.cs" />
     <Compile Include="Controllers\MonHocController.cs" />
+    <Compile Include="Controllers\ThongKeController.cs" />
     <Compile Include="DAL\KhoaHoc_DAL.cs" />
     <Compile Include="DAL\LopHoc_DAL.cs" />
     <Compile Include="DAL\MonHoc_DAL.cs" />
+    <Compile Include="DAL\ThongKeKhoaHoc_DAL.cs" />
     <Compile Include="Framework\KhoaHoc.cs" />
     <Compile Include="Framework\Model1.cs" />
     <Compile Include="Framework\NguoiHuongDan.cs" />
@@ -149,6 +151,7 @@
     <Compile Include="Models\KhoaHoc.cs" />
     <Compile Include="Models\LopHoc.cs" />
     <Compile Include="Models\MonHoc.cs" />
+    <Compile Include="Models\ThongKeKhoaHoc.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -189,10 +192,11 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\KhoaHoc\XemKhoaHoc.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
-    <Content Include="Views\KhoaHoc\Create.cshtml" />
     <Content Include="Views\MonHoc\XemMonHoc.cshtml" />
     <Content Include="Views\MonHoc\Create.cshtml" />
     <Content Include="Views\LopHoc\XemLopHoc.cshtml" />
+    <Content Include="Views\ThongKe\Index.cshtml" />
+    <Content Include="Views\KhoaHoc\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

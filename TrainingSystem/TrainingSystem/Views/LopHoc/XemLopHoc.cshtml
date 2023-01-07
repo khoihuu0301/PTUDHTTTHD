@@ -27,35 +27,34 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.MaHV)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TenHV)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Diem)
-        </td>
-        <td>
-            @if (item.TrangThai==1)
-            {
-                @*@Html.DisplayFor(modelItem => "Pass")*@
-                <p>Pass</p>
-            }
-            else
-            {
-                @*@Html.DisplayFor(modelItem => "Failed")*@
-                <p>Failed</p>
-            }
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.MaKH }) |
-            @Html.ActionLink("Details", "Details", new { id=item.MaKH }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.MaKH })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaHV)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TenHV)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Diem)
+            </td>
+            <td>
+                @if (item.TrangThai == 1)
+                {
+                    <p>Pass</p>
+                }
+                else
+                {
+                    <p>Failed</p>
+                }
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.MaKH }) |
+                @Html.ActionLink("Details", "Details", new { id = item.MaKH }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.MaKH })
+            </td>
+        </tr>
+    }
 
 </table>
